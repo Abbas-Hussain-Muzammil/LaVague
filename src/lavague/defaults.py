@@ -1,6 +1,6 @@
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai import OpenAI
-from .driver import SeleniumDriver
+from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,22 +27,10 @@ class DefaultLLM(OpenAI):
             super().__init__(api_key=api_key, max_tokens=max_new_tokens)
 
 
-def default_get_driver() -> SeleniumDriver:
-    from selenium import webdriver
-    from selenium.webdriver.chrome.service import Service
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.common.keys import Keys
-    import os.path
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Ensure GUI is off
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--window-size=1600,900")
 
-    homedir = os.path.expanduser("~")
-    chrome_options.binary_location = f"{homedir}/chrome-linux64/chrome"
-    webdriver_service = Service(f"{homedir}/chromedriver-linux64/chromedriver")
-
-    driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
-    return SeleniumDriver(driver)
+def default_get_driver() -> PlaywrightDriver:
+    playwright = sync_playwright().start()
+    browser = playwright.chromium.launch(headless=True, args=["--no-sandbox", "--window-size=1600,900"])
+    page = browser.new_page()
+    return PlaywrightDriver(page)

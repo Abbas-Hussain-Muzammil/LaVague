@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import Any
-from selenium.webdriver.remote.webdriver import WebDriver
+from playwright.sync_api import sync_playwright
 
 
+        
 class AbstractDriver(ABC):
     def getDriver(self) -> Any:
         pass
@@ -24,7 +25,7 @@ class AbstractDriver(ABC):
         pass
 
 
-class SeleniumDriver(AbstractDriver):
+class PlaywrightDriver(AbstractDriver):
     def __init__(self, driver: WebDriver):
         self.driver = driver
 

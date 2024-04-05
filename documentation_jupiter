@@ -1,0 +1,51 @@
+
+**1. Fork and Clone Repository:**
+   - Fork the LaVague repository on GitHub.
+   - Clone your forked repository to your local machine:
+
+     ```
+     git clone https://github.com/your-username/LaVague.git
+     ```
+
+**2. Install Playwright:**
+   - Make sure you have Node.js installed on your machine.
+   - Navigate to the `LaVague` directory.
+   - Install Playwright using npm:
+     ```
+     npm install playwright
+     ```
+
+**3. Replace Selenium with Playwright:**
+   - Identify all places where Selenium is used for web automation in the codebase.
+   - Replace Selenium code with equivalent Playwright code. This includes initialization, navigation, element interaction, and screenshot capturing.
+   - Update import statements to import Playwright instead of Selenium.
+
+**4. Modify Demo and Utility Functions:**
+   - Update any demo or utility functions that rely on Selenium to use Playwright instead. This may involve modifying initialization, capturing screenshots, or interacting with the browser.
+
+**5. Test Your Changes:**
+   - Thoroughly test your changes to ensure that the application functions correctly with Playwright.
+   - Verify that all features and functionality are working as expected.
+   - Test across different browsers and environments to ensure compatibility.
+
+**6. Document the Changes:**
+   - Update the README or any relevant documentation to reflect the changes made and provide instructions on how to use Playwright instead of Selenium.
+   - Include any dependencies or setup instructions necessary for running the application with Playwright.
+
+**7. Commit and Push Changes:**
+   - Once you're satisfied with your changes, commit them to your local repository:
+     ```
+     git add .
+     git commit -m "Switched to Playwright for web automation"
+     ```
+   - Push the changes to your forked repository on GitHub:
+     ```
+     git push origin master
+     ```
+
+**8. Create a Pull Request:**
+   - Create a pull request from your forked repository to the original LaVague repository.
+   - Provide a clear description of the changes you've made and why they were necessary.
+   - Await review and feedback from the maintainers of the LaVague repository.
+
+By following these steps, you should be able to successfully switch from Selenium to Playwright in the LaVague repository. 

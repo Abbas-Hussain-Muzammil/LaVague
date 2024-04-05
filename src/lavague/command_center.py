@@ -1,16 +1,12 @@
 from typing import Optional, List
 from abc import ABC, abstractmethod
 import gradio as gr
-from selenium.webdriver.common.by import By  # import used by generated selenium code
-from selenium.webdriver.common.keys import (
-    Keys,
-)
+from playwright.sync_api import sync_playwright
 
 from .telemetry import send_telemetry
 from .action_engine import BaseActionEngine
-from .driver import AbstractDriver
+from .driver import PlaywrightDriver
 import base64
-
 
 class CommandCenter(ABC):
     @abstractmethod
@@ -21,16 +17,15 @@ class CommandCenter(ABC):
     def process_instructions():
         pass
 
-
 class GradioDemo(CommandCenter):
     """
-    CommandCenter allows you to launch a gradio demo powered by selenium and the ActionEngine
+    CommandCenter allows you to launch a gradio demo powered by Playwright and the ActionEngine
 
     Args:
         actionEngine (`BaseActionEngine`):
             The action engine, with streaming enabled
-        driver (`AbstractDriver`):
-            The driver
+        driver (`PlaywrightDriver`):
+            The Playwright driver
     """
 
     title = """
@@ -40,7 +35,7 @@ class GradioDemo(CommandCenter):
     </div>
     """
 
-    def __init__(self, actionEngine: BaseActionEngine, driver: AbstractDriver):
+    def __init__(self, actionEngine: BaseActionEngine, driver: PlaywrightDriver):
         self.actionEngine = actionEngine
         self.driver = driver
         self.base_url = ""
