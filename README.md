@@ -89,3 +89,4 @@ TO keep up to date with our project backlog [here](https://github.com/orgs/lavag
 ### 🚨 Disclaimer
 
 This project executes LLM-generated code using `exec`. This is not considered a safe practice. We therefore recommend taking extra care when using LaVague (such as running LaVague in a sandboxed environment)!
+# LaVague1.1
